@@ -5,10 +5,6 @@ export class Organ {
         addElement(x, y, 'heartsil');
         this.element = addElement(x, y, 'heart', true);
 
-        this.element.addEventListener('dragstart', (e) => {
-            e.preventDefault();
-        });
-
         this.element.addEventListener('mousedown', this.drag.bind(this));
         this.moveReference = this.move.bind(this);
         this.dropReference = this.drop.bind(this);
@@ -47,6 +43,11 @@ function addElement(x, y, src, front = false) {
     element.style.top = y + 'px';
     if (front) {
         element.style.zIndex = "1";
+        element.classList.add('sticker');
     }
+    element.addEventListener('dragstart', (e) => {
+        e.preventDefault();
+    });
+
     return element;
 }

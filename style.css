@@ -8,6 +8,13 @@ body {
 }
 
 #container > img {
-    cursor: pointer;
     position: fixed;
+}
+
+.sticker {
+    cursor: pointer;
+}
+
+.sticker:active {
+    transform: scale(1.1);
 }
