@@ -7,11 +7,7 @@ body {
     height: 100vh;
 }
 
-#container > div {
-    width: 100px;
-    height: 100px;
-    background-color: pink;
-    border-radius: 5px;
+#container > img {
     cursor: pointer;
     position: fixed;
 }

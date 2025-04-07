@@ -1,11 +1,14 @@
+let container = document.getElementById('container');
+
 export class Organ {
-    constructor(x, y, colour) {
-        let element = document.createElement('div');
-        container.append(element);
-        this.element = element;
-        this.element.style.left = x + 'px';
-        this.element.style.top = y + 'px';
-        this.element.style.backgroundColor = colour;
+    constructor(x, y) {
+        addElement(x, y, 'heartsil');
+        this.element = addElement(x, y, 'heart', true);
+
+        this.element.addEventListener('dragstart', (e) => {
+            e.preventDefault();
+        });
+
         this.element.addEventListener('mousedown', this.drag.bind(this));
         this.moveReference = this.move.bind(this);
         this.dropReference = this.drop.bind(this);
@@ -34,4 +37,16 @@ export class Organ {
         document.removeEventListener('mousemove', this.moveReference);
         document.removeEventListener('mouseup', this.dropReference);
     }
+}
+
+function addElement(x, y, src, front = false) {
+    let element = document.createElement('img');
+    element.src = `/assets/${src}.webp`;
+    container.append(element);
+    element.style.left = x + 'px';
+    element.style.top = y + 'px';
+    if (front) {
+        element.style.zIndex = "1";
+    }
+    return element;
 }
