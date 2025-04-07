@@ -1,4 +1,5 @@
 let container = document.getElementById('container');
+let containerBox = container.getBoundingClientRect();
 
 export class Organ {
     constructor(x, y) {
@@ -39,8 +40,8 @@ function addElement(x, y, src, front = false) {
     let element = document.createElement('img');
     element.src = `./assets/${src}.webp`;
     container.append(element);
-    element.style.left = x + 'px';
-    element.style.top = y + 'px';
+    element.style.left = containerBox.left + x + 'px';
+    element.style.top = containerBox.top + y + 'px';
     if (front) {
         element.style.zIndex = "1";
         element.classList.add('sticker');
@@ -48,6 +49,5 @@ function addElement(x, y, src, front = false) {
     element.addEventListener('dragstart', (e) => {
         e.preventDefault();
     });
-
     return element;
 }
