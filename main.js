@@ -1,27 +1,36 @@
-let newX, newY, startX, startY;
-let card = document.getElementById('card');
+class Organ {
+    constructor() {
+        let element = document.createElement('div');
+        container.append(element);
+        this.element = element;
+        this.element.addEventListener('mousedown', this.drag.bind(this));
+        this.moveReference = this.move.bind(this);
+        this.dropReference = this.drop.bind(this);
+    }
 
-const drag = (e) => {
-    startX = e.clientX;
-    startY = e.clientY;
-
-    document.addEventListener('mousemove', moveElement);
-    document.addEventListener('mouseup', dropElement)
+    drag(e) {
+        this.startX = e.clientX;
+        this.startY = e.clientY;
+    
+        document.addEventListener('mousemove', this.moveReference);
+        document.addEventListener('mouseup', this.dropReference)
+    }
+    
+    move(e) {
+        const newX = this.startX - e.clientX;
+        const newY = this.startY - e.clientY;
+    
+        this.startX = e.clientX;
+        this.startY = e.clientY;
+    
+        this.element.style.top = (this.element.offsetTop - newY) + 'px';
+        this.element.style.left = (this.element.offsetLeft - newX) + 'px';
+    }
+    
+    drop(e) {
+        document.removeEventListener('mousemove', this.moveReference);
+        document.removeEventListener('mouseup', this.dropReference);
+    }
 }
 
-const moveElement = (e) => {
-    newX = startX - e.clientX;
-    newY = startY - e.clientY;
-
-    startX = e.clientX;
-    startY = e.clientY;
-
-    card.style.top = (card.offsetTop - newY) + 'px';
-    card.style.left = (card.offsetLeft - newX) + 'px';
-}
-
-const dropElement = (e) => {
-    document.removeEventListener('mousemove', moveElement);
-}
-
-card.addEventListener('mousedown', drag);
+let test = new Organ();
