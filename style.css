@@ -1,6 +1,7 @@
-body {
+* {
     padding: 0;
     margin: 0;
+    cursor: url('./assets/tweezer.png'), auto;
 }
 
 #container {
@@ -14,10 +15,8 @@ body {
     position: fixed;
 }
 
-.sticker {
-    cursor: pointer;
-}
-
 .sticker:active {
     transform: scale(1.1);
+    cursor: url('./assets/tweezer2.webp'), auto;
+
 }
