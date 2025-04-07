@@ -37,7 +37,7 @@ export class Organ {
 
 function addElement(x, y, src, front = false) {
     let element = document.createElement('img');
-    element.src = `/assets/${src}.webp`;
+    element.src = `./assets/${src}.webp`;
     container.append(element);
     element.style.left = x + 'px';
     element.style.top = y + 'px';
