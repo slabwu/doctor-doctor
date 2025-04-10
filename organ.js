@@ -14,6 +14,7 @@ export class Organ {
     drag(e) {
         this.startX = e.clientX;
         this.startY = e.clientY;
+        this.element.style.zIndex = "3";
     
         document.addEventListener('mousemove', this.moveReference);
         document.addEventListener('mouseup', this.dropReference)
@@ -31,6 +32,7 @@ export class Organ {
     }
     
     drop(e) {
+        this.element.style.zIndex = "2";
         document.removeEventListener('mousemove', this.moveReference);
         document.removeEventListener('mouseup', this.dropReference);
     }
