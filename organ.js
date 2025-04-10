@@ -3,9 +3,9 @@ let containerBox = container.getBoundingClientRect();
 const ERROR = 30;
 
 export class Organ {
-    constructor(x, y) {
-        addElement(x, y, 'heartsil');
-        this.element = addElement(x, y, 'heart', true);
+    constructor(asset, x, y) {
+        addElement(x, y, asset + 'sil');
+        this.element = addElement(x, y, asset, true);
 
         this.element.addEventListener('mousedown', this.drag.bind(this));
         this.moveReference = this.move.bind(this);
@@ -49,7 +49,6 @@ export class Organ {
 
         if (this.x < this.originalX + ERROR && this.x > this.originalX - ERROR &&
             this.y < this.originalY + ERROR && this.y > this.originalY - ERROR) {
-            console.log('YES');
             this.element.style.top = this.originalY + 'px';
             this.element.style.left = this.originalX + 'px';
         }
