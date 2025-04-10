@@ -1,5 +1,6 @@
 let container = document.getElementById('container');
 let containerBox = container.getBoundingClientRect();
+const ERROR = 30;
 
 export class Organ {
     constructor(x, y) {
@@ -9,6 +10,14 @@ export class Organ {
         this.element.addEventListener('mousedown', this.drag.bind(this));
         this.moveReference = this.move.bind(this);
         this.dropReference = this.drop.bind(this);
+
+        let originalPosition = this.element.getBoundingClientRect();
+        this.originalX = originalPosition.x;
+        this.originalY = originalPosition.y;
+
+        this.setPosition()
+
+        console.log(this.x, this.y);
     }
 
     drag(e) {
@@ -35,6 +44,21 @@ export class Organ {
         this.element.style.zIndex = "2";
         document.removeEventListener('mousemove', this.moveReference);
         document.removeEventListener('mouseup', this.dropReference);
+
+        this.setPosition()
+
+        if (this.x < this.originalX + ERROR && this.x > this.originalX - ERROR &&
+            this.y < this.originalY + ERROR && this.y > this.originalY - ERROR) {
+            console.log('YES');
+            this.element.style.top = this.originalY + 'px';
+            this.element.style.left = this.originalX + 'px';
+        }
+    }
+
+    setPosition() {
+        let organBox = this.element.getBoundingClientRect();
+        this.x = organBox.x;
+        this.y = organBox.y;
     }
 }
 
