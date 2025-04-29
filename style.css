@@ -45,6 +45,10 @@ h1 {
     position: fixed;
 }
 
+/* .sticker, .silhouette {
+    scale: 60%;
+} */
+
 .sticker:active {
     transform: scale(1.1);
     cursor: url('./assets/tweezer2.webp'), auto;
@@ -55,3 +59,27 @@ h1 {
     object-fit: contain;
     width: 500px;
 }
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+.sticker + .tooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 10;
+}
+
+.sticker:hover + .tooltip {
+    visibility: visible;
+  }

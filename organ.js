@@ -7,6 +7,7 @@ export class Organ {
     constructor(asset, x, y) {
         addElement(x, y, asset + 'sil');
         this.element = addElement(x, y, asset, true);
+        addToolTip(asset);
 
         this.element.addEventListener('mousedown', this.drag.bind(this));
         this.moveReference = this.move.bind(this);
@@ -71,9 +72,18 @@ function addElement(x, y, src, front = false) {
     if (front) {
         element.style.zIndex = 1;
         element.classList.add('sticker');
+    } else {
+        element.classList.add('silhouette');
     }
     element.addEventListener('dragstart', (e) => {
         e.preventDefault();
     });
     return element;
+}
+
+function addToolTip(name, x, y) {
+    let element = document.createElement('span');
+    element.innerHTML = name;
+    container.append(element);
+    element.classList.add('tooltip');
 }
