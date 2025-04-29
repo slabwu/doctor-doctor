@@ -23,7 +23,7 @@ h1 {
     display: grid;
     grid-template:
     "body symptoms" 200px
-    "body container" 500px / 400px 520px;
+    "body container" 500px / 500px 520px;
 }
 
 #body {
@@ -33,12 +33,12 @@ h1 {
 
 #symptoms {
     grid-area: symptoms;
-    background-color: papayawhip;
+    background-color: lightskyblue;
 }
 
 #container {
     grid-area: container;
-    background-color: pink;
+    background-color: lightgrey;
 }
 
 #container > img {
@@ -49,4 +49,9 @@ h1 {
     transform: scale(1.1);
     cursor: url('./assets/tweezer2.webp'), auto;
 
+}
+
+#body > img {
+    object-fit: contain;
+    width: 500px;
 }
