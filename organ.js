@@ -1,6 +1,7 @@
 let container = document.getElementById('container');
 let containerBox = container.getBoundingClientRect();
 const ERROR = 30;
+let layer = 2;
 
 export class Organ {
     constructor(asset, x, y) {
@@ -23,7 +24,8 @@ export class Organ {
     drag(e) {
         this.startX = e.clientX;
         this.startY = e.clientY;
-        this.element.style.zIndex = "3";
+        this.element.style.zIndex = layer;
+        layer++;
     
         document.addEventListener('mousemove', this.moveReference);
         document.addEventListener('mouseup', this.dropReference)
@@ -41,7 +43,6 @@ export class Organ {
     }
     
     drop(e) {
-        this.element.style.zIndex = "2";
         document.removeEventListener('mousemove', this.moveReference);
         document.removeEventListener('mouseup', this.dropReference);
 
@@ -68,7 +69,7 @@ function addElement(x, y, src, front = false) {
     element.style.left = containerBox.left + x + 'px';
     element.style.top = containerBox.top + y + 'px';
     if (front) {
-        element.style.zIndex = "1";
+        element.style.zIndex = 1;
         element.classList.add('sticker');
     }
     element.addEventListener('dragstart', (e) => {
